@@ -1,0 +1,11 @@
+{
+  "name": "JSKeyboard",
+  "version": "0.1.0",
+  "description": "Simple JS keyboard",
+  "main": "keyboard/keyboard.js",
+  "dependencies": {
+    "jade": "*"
+  },
+  "author": "prosperi",
+  "license": "MIT"
+}

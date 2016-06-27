@@ -1,0 +1,23 @@
+doctype
+html
+  head
+    title JS keyboard
+    link(rel="stylesheet",href="styles.css")    
+  body
+    .keyboard#keyboard
+      - for(var i = 0; i < 5; i++){
+        .row
+          .col-half
+          - for(var j = 0; j < 15; j++){
+            - if(j == 0 && i != 0){
+                .col-2 foo
+                - j++
+            - }
+            - else{
+                .col-1 foo
+            - }
+          - }
+          .col-half
+      - }        
+    script(src="keyboard.js")
+    
