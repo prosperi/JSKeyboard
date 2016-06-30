@@ -2,19 +2,22 @@ doctype
 html
   head
     title JS keyboard
+    script(src="jquery.min.js")
     link(rel="stylesheet",href="styles.css")    
   body
+    textarea.input-div#input-div
+    br
     .keyboard#keyboard
       - for(var i = 0; i < 5; i++){
-        .row
+        div(class="row",id="row-#{i}")
           .col-half
           - for(var j = 0; j < 15; j++){
             - if(j == 0 && i != 0){
-                .col-2 foo
+                div(class="col-2",id="col-#{i+''+j}") foo
                 - j++
             - }
             - else{
-                .col-1 foo
+                div(class="col-1",id="col-#{i+''+j}") foo
             - }
           - }
           .col-half
