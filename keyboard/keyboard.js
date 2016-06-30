@@ -21,10 +21,11 @@ function init(lang, input, keyboard){
      console.log("Error");
    }
 
-   function drawKeyboard(keyboard){
-     keyboard.forEach(function(row, index){
+   function drawKeyboard(layout){
+     layout.forEach(function(row, index){
        for(var col in row){
-         document.getElementById("col-"+ index + col).textContent = row[col];       }
+         document.getElementById("col-"+ index + col).textContent = row[col];
+       }
      });
    }
 
