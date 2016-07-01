@@ -18,6 +18,7 @@
   padding: 11px;
   border-radius: 7px;
   cursor: pointer;
+  text-align: center;
 }
 
 .col-half {
@@ -97,4 +98,5 @@
 
 .col-none {
   background-color: #FFF;
+  cursor: default;
 }
