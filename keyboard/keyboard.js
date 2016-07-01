@@ -49,10 +49,10 @@ function init(lang, input, keyboard){
          case "right":
               changeCursor(1);
               break;
-         case "delete":
+         case "bspace":
               deleteSymbol(true);
               break;
-         case "bspace":
+         case "delete":
               deleteSymbol(false);
          default:
               console.log("There is no such key");
