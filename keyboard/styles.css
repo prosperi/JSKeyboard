@@ -2,6 +2,12 @@
   box-sizing: border-box;
 }
 
+body {
+  color: #ecf0f1;
+  font-weight: bold;
+  font-family: "sans-serif";
+}
+
 .input-div {
   width: 90%;
   height: 170px;
