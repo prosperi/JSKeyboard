@@ -2,6 +2,7 @@ function init(lang, input, keyboard){
   var LAYOUT = "layouts/" + lang + ".json";
   var INPUT = document.getElementById(input);
   var KEYBOARD = document.getElementById(keyboard);
+  var COMMON_VERSION, SHIFT_VERSION, CAPS_VERSION;
 
   $.ajax({
      url: LAYOUT,
@@ -10,10 +11,11 @@ function init(lang, input, keyboard){
    });
 
    function success(data){
-     var common_version = data.common;
-     var shift_version = data.shift;
+     COMMON_VERSION = data.common;
+     SHIFT_VERSION = data.shift;
+     CAPS_VERSION = data.caps;
 
-     drawKeyboard(common_version);
+     drawKeyboard(COMMON_VERSION, 1);
 
    }
 
@@ -21,14 +23,17 @@ function init(lang, input, keyboard){
      console.log("Error");
    }
 
-   function drawKeyboard(layout){
+   function drawKeyboard(layout, listenerChecker){
      layout.forEach(function(row, index){
        for(var col in row){
          document.getElementById("col-"+ index + col).textContent = row[col];
-         document.getElementById("col-"+ index + col).addEventListener("click", onClick);
+         if(listenerChecker){
+          document.getElementById("col-"+ index + col).addEventListener("click", onClick);
+         }
        }
      });
    }
+
 
    function onClick(){
      if(this.textContent.length > 1){
@@ -54,6 +59,12 @@ function init(lang, input, keyboard){
               break;
          case "delete":
               deleteSymbol(false);
+         case "shift":
+              changeShift();
+              break;
+         case "caps":
+              changeCaps();
+              break;
          default:
               console.log("There is no such key");
        }
@@ -87,6 +98,22 @@ function init(lang, input, keyboard){
      INPUT.selectionStart = (type) ? start + 1 : start;
      INPUT.selectionEnd =(type) ? end + 1 : end;
    }
+
+   var changeCaps = (function(){
+     var counter = 0;
+     return function(){
+       counter++;
+       return (counter%2 == 1) ? drawKeyboard(CAPS_VERSION, 0) : drawKeyboard(COMMON_VERSION, 0);
+     };
+   }());
+
+   var changeShift = (function(){
+     var counter = 0;
+     return function(){
+       counter++;
+       return (counter%2 == 1) ? drawKeyboard(SHIFT_VERSION, 0) : drawKeyboard(COMMON_VERSION, 0);
+     }
+   }());
 
 
 }
