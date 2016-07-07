@@ -7,7 +7,7 @@ html
     script(src="keyboard.js")
     script(src="app.js")
     link(rel="stylesheet",href="styles.css")    
-  body(ng-app="app")
-    textarea.input-div#input-div
+  body(ng-app="app", ng-controller="MainCtrl")
+    textarea(id="input-div",class="input-div", ng-model="input")
     br
     keyboard-div

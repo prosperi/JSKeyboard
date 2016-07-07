@@ -8,8 +8,8 @@
     <script src="app.js"></script>
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body ng-app="app">
-    <textarea id="input-div" class="input-div"></textarea><br>
+  <body ng-app="app" ng-controller="MainCtrl">
+    <textarea id="input-div" ng-model="input" class="input-div"></textarea><br>
     <keyboard-div></keyboard-div>
   </body>
 </html>

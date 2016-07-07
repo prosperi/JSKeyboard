@@ -74,6 +74,7 @@ function init(lang, input, keyboard){
        appendSymbol(this.textContent);
      }
      INPUT.focus();
+     $(INPUT).trigger('input');
    }
 
    function appendSymbol(sym){

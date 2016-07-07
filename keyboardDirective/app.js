@@ -1,5 +1,9 @@
 angular.module('app', [])
 
+.controller('MainCtrl', ['$scope', function($scope){
+  $scope.input = "";
+}])
+
 .directive('keyboardDiv', function(){
   return {
     restrict: 'E',
