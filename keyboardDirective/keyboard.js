@@ -3,6 +3,7 @@ function init(lang, input, keyboard){
   var INPUT = document.getElementById(input);
   var KEYBOARD = document.getElementById(keyboard);
   var COMMON_VERSION, SHIFT_VERSION, CAPS_VERSION;
+  console.log(INPUT, KEYBOARD);
 
   $.ajax({
      url: LAYOUT,
@@ -119,4 +120,4 @@ function init(lang, input, keyboard){
 
 }
 
-init("layout", "input-div", "keyboard");
+//init("layout", "input-div", "keyboard");

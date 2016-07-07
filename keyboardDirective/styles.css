@@ -1,0 +1,108 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #ecf0f1;
+  font-weight: bold;
+  font-family: "sans-serif";
+}
+
+.input-div {
+  width: 90%;
+  height: 170px;
+  border: 1px solid #2c3e50;
+  margin: 0 auto;
+  resize: none;
+  display: block;
+}
+
+[class*="col-"]{
+  float: left;
+  border: 3px solid #fff;
+  background-color: #2c3e50;
+  padding: 11px;
+  border-radius: 7px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.col-half {
+    width: 3.125%;
+    background-color: transparent !important;
+}
+
+.col-1 {
+  width: 6.25%;
+}
+
+.col-2 {
+  width: 12.5%;
+}
+
+.col-3 {
+  width: 18.75%;
+}
+
+.col-4 {
+  width: 25%;
+}
+
+.col-5 {
+  width: 31.25%;
+}
+
+.col-6 {
+  width: 37.5%;
+}
+
+.col-7 {
+  width: 43.75%;
+}
+
+.col-8 {
+  width: 50%;
+}
+
+.col-9 {
+  width: 56.25%;
+}
+
+.col-10 {
+  width: 62.5%;
+}
+
+.col-11 {
+  width: 68.75%;
+}
+
+.col-12 {
+  width: 75%;
+}
+
+.col-13 {
+  width: 81.25%;
+}
+
+.col-14 {
+  width: 87.5%;
+}
+
+.col-15 {
+  width: 93.75%;
+}
+
+.col-16 {
+  width: 100%;
+}
+
+.row::after{
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.col-none {
+  background-color: #FFF;
+  cursor: default;
+}
