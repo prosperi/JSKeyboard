@@ -1,9 +1,10 @@
-function init(lang, input, keyboard){
+function init(lang, input, keyboard, scope){
   var LAYOUT = "layouts/" + lang + ".json";
   var INPUT = document.getElementById(input);
   var KEYBOARD = document.getElementById(keyboard);
+  var SCOPE = scope;
   var COMMON_VERSION, SHIFT_VERSION, CAPS_VERSION;
-  console.log(INPUT, KEYBOARD);
+  console.log(INPUT, KEYBOARD, scope);
 
   $.ajax({
      url: LAYOUT,
@@ -27,9 +28,9 @@ function init(lang, input, keyboard){
    function drawKeyboard(layout, listenerChecker){
      layout.forEach(function(row, index){
        for(var col in row){
-         document.getElementById("col-"+ index + col).textContent = row[col];
+         document.getElementById(SCOPE + "-" + "col-" + index + col).textContent = row[col];
          if(listenerChecker){
-          document.getElementById("col-"+ index + col).addEventListener("click", onClick);
+          document.getElementById(SCOPE + "-" + "col-" + index + col).addEventListener("click", onClick);
          }
        }
      });

@@ -1,29 +1,29 @@
-.keyboard#keyboard
+div(class="keyboard", id="{{keyboard}}")
   - for(var i = 0; i < 4; i++){
-    div(class="row",id="row-#{i}")
+    div(class="row",id="{{keyboard}}-row-#{i}")
       .col-half
       - for(var j = 0; j < 15; j++){
         - if(j == 0 && i != 0){
-            div(class="col-2",id="col-#{i+''+j}") 
+            div(class="col-2",id="{{keyboard}}-col-#{i+''+j}") 
             - j++
         - }else if(i == 2 && j== 13){
-            div(class="col-2",id="col-#{i+''+j}") 
+            div(class="col-2",id="{{keyboard}}-col-#{i+''+j}") 
             - j++
         - }else if(i == 3 && j== 12){
-            div(class="col-3",id="col-#{i+''+j}") 
+            div(class="col-3",id="{{keyboard}}-col-#{i+''+j}") 
             - j += 2
         - }else{
-            div(class="col-1",id="col-#{i+''+j}") 
+            div(class="col-1",id="{{keyboard}}-col-#{i+''+j}") 
         - }
       - }
       .col-half
   - }      
-  div(class="row",id="row-4")
+  div(class="row",id="{{keyboard}}-row-4")
     .col-half
     .col-4.col-none
-    .col-4#col-44
-    .col-2#col-48
-    .col-2#col-410
+    div(class="col-4", id="{{keyboard}}-col-44")
+    div(class="col-2", id="{{keyboard}}-col-48")
+    div(class="col-2", id="{{keyboard}}-col-410")
     .col-3.col-none
     .col-half 
   
