@@ -1,2 +1,2 @@
 # JSKeyboard
-Simple JS keyboard
+Simple JS keyboard, Angular directive coming soon
