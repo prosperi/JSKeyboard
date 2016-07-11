@@ -28,9 +28,13 @@ function init(lang, input, keyboard, scope){
    function drawKeyboard(layout, listenerChecker){
      layout.forEach(function(row, index){
        for(var col in row){
-         document.getElementById(SCOPE + "-" + "col-" + index + col).textContent = row[col];
-         if(listenerChecker){
-          document.getElementById(SCOPE + "-" + "col-" + index + col).addEventListener("click", onClick);
+         var el = document.getElementById(SCOPE + "-" + "col-" + index + col);
+         // Checks if element exists (not null);
+         if(el){
+          el.textContent = row[col];
+           if(listenerChecker){
+            el.addEventListener("click", onClick);
+           }  
          }
        }
      });
