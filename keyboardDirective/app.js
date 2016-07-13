@@ -16,7 +16,7 @@ angular.module('app', [])
     replace: 'true',
     templateUrl: 'keyboard.html',
     link: function(scope, elem, attrs){
-      init("layout", attrs.inputDiv, scope.keyboard, scope.keyboard);
+      init("eng", attrs.inputDiv, scope.keyboard, scope.keyboard);
     }
   };
 })
