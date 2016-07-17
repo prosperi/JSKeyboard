@@ -3,7 +3,7 @@ function App(){
   this.input = null;
 }
 
-function Keyboard(id, layout, app){
+function Keyboard(id, layout, app, input){
   this.id = id;
   this.element = document.getElementById(id);
   this.layout = layout;
@@ -12,11 +12,15 @@ function Keyboard(id, layout, app){
   this.CAPS_VERSION = layout.caps;
   this.buttons = [];
   this.app = app;
+  this.input = input;
+  this.input.keyboard = this;
 }
 
 function Button(value, id, keyboard){
   this.value = value;
   this.id = id;
+  this.colId = /[0-9]+$/.exec(id)[0].slice(0,1);
+  this.rowId = /[0-9]+$/.exec(id)[0].slice(1);
   this.keyboard = keyboard;
   this.element = document.getElementById(id);
   this.element.textContent = value;
@@ -27,8 +31,11 @@ function Input(id, app){
   this.id = id;
   this.element = document.getElementById(id);
   this.app = app;
+  this.keyboard = null;
 }
 
+
+// Init application. During this process language is loaded, new Keyboard and Input are creted
 App.prototype.init = function(lang, inputID, keyboardID){
 
   var that = this;
@@ -41,8 +48,8 @@ App.prototype.init = function(lang, inputID, keyboardID){
   });
 
   function success(data){
-    var keyboard = new Keyboard(keyboardID, data, that);
     var input = new Input(inputID, that);
+    var keyboard = new Keyboard(keyboardID, data, that, input);
     that.keyboard = keyboard;
     that.input = input;
     keyboard.draw("COMMON_VERSION", 1);
@@ -55,6 +62,8 @@ App.prototype.init = function(lang, inputID, keyboardID){
 
 };
 
+
+// Initialize Keyboard.buttons array and create new Buttons
 Keyboard.prototype.draw = function(layout, listenerChecker){
 
   this[layout].forEach(function(row, index){
@@ -68,36 +77,47 @@ Keyboard.prototype.draw = function(layout, listenerChecker){
 
 };
 
+// Reassign Buttons' textContent (used for Caps, Shift and language change operations)
+Keyboard.prototype.changeView = function(layout){
+  this.buttons.forEach(function(button){
+    button.element.textContent = this[layout][button.colId][button.rowId];
+  }, this);
+}
+
+// Button onClick Listener
 Button.prototype.onClick =function(){
+  // Find if a symbol was clicked. If that's the case then
+  // its value's length should be equal to 1, otherwise
+  // "special" button was clicked
   if(this.value.length > 1){
     switch(this.value){
       case "space":
-           appendSymbol(" ");
+           this.keyboard.input.appendSymbol(" ");
            break;
       case "enter":
-           appendSymbol('\n');
+           this.keyboard.input.appendSymbol('\n');
            break;
       case "tab":
-           appendSymbol("   ");
-           changeCursor(2);
+           this.keyboard.input.appendSymbol("   ");
+           this.keyboard.input.changeCursor(2);
            break;
       case "left":
-           changeCursor(-1);
+           this.keyboard.input.changeCursor(-1);
            break;
       case "right":
-           changeCursor(1);
+           this.keyboard.input.changeCursor(1);
            break;
       case "bspace":
-           deleteSymbol(true);
+           this.keyboard.input.deleteSymbol(true);
            break;
       case "delete":
-           deleteSymbol(false);
+           this.keyboard.input.deleteSymbol(false);
            break;
       case "shift":
-           changeShift();
+           this.keyboard.input.changeShift();
            break;
       case "caps":
-           changeCaps();
+           this.keyboard.input.changeCaps();
            break;
       default:
            console.log("There is no such key");
@@ -117,13 +137,41 @@ Input.prototype.appendSymbol = function(sym){
   input.selectionEnd = start + 1;
 };
 
-Input.prototype.deleteSymbol = function(){
-
+Input.prototype.deleteSymbol = function(type){
+  var input = this.element;
+  var start = input.selectionStart,
+      end = input.selectionEnd;
+  if(start === end)
+     input.value = (type) ? input.value.slice(0, start-1) + input.value.slice(end) :  input.value.slice(0, start) + input.value.slice(end + 1);
+  else
+     input.value = input.value.slice(0, start) + input.value.slice(end);
+  input.selectionStart = (type) ? start + 1 : start;
+  input.selectionEnd =(type) ? end + 1 : end;
 };
 
-Input.prototype.changeCursor = function(){
-
+// Change Input field cursor, hChange argument shows the displacement of cursor
+Input.prototype.changeCursor = function(hChange){
+  var input = this.element;
+  var start = input.selectionStart;
+  input.selectionStart = start + hChange;
+  input.selectionEnd = start + hChange;
 };
+
+Input.prototype.changeCaps = (function(){
+  var counter = 0;
+  return function(){
+    counter++;
+    return (counter%2 === 1) ? this.keyboard.changeView("CAPS_VERSION") : this.keyboard.changeView("COMMON_VERSION");
+  };
+}());
+
+Input.prototype.changeShift = (function(){
+  var counter = 0;
+  return function(){
+    counter++;
+    return (counter%2 === 1) ? this.keyboard.changeView("SHIFT_VERSION", 0) : this.keyboard.changeView("COMMON_VERSION");
+  }
+}());
 
 var app = new App();
 app.init("layout", "input-div", "keyboard");
