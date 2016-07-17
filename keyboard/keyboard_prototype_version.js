@@ -82,7 +82,31 @@ Keyboard.prototype.changeView = function(layout){
   this.buttons.forEach(function(button){
     button.element.textContent = this[layout][button.colId][button.rowId];
   }, this);
-}
+};
+
+Keyboard.prototype.changeLanguage = function(lang){
+
+  var that = this;
+  var LAYOUT_ADDRESS = "layouts/" + lang + ".json";
+
+  $.ajax({
+    url: LAYOUT_ADDRESS,
+    success: success,
+    error: error
+  });
+
+  function success(data){
+    that.COMMON_VERSION = data.common;
+    that.SHIFT_VERSION = data.shift;
+    that.CAPS_VERSION = data.caps;
+    that.changeView("COMMON_VERSION");
+  }
+
+  function error(){
+    console.log("Error");
+  }
+
+};
 
 // Button onClick Listener
 Button.prototype.onClick =function(){
@@ -119,6 +143,9 @@ Button.prototype.onClick =function(){
       case "caps":
            this.keyboard.input.changeCaps();
            break;
+      case "lang":
+            this.keyboard.changeLanguage("geo");
+            break;
       default:
            console.log("There is no such key");
     }
@@ -174,4 +201,4 @@ Input.prototype.changeShift = (function(){
 }());
 
 var app = new App();
-app.init("layout", "input-div", "keyboard");
+app.init("eng", "input-div", "keyboard");
