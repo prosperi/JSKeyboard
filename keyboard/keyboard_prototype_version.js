@@ -1,6 +1,7 @@
 function App(){
   this.keyboard = null;
   this.input = null;
+  this.language = null;
 }
 
 function Keyboard(id, layout, app, input){
@@ -36,10 +37,10 @@ function Input(id, app){
 
 
 // Init application. During this process language is loaded, new Keyboard and Input are creted
-App.prototype.init = function(lang, inputID, keyboardID){
+App.prototype.init = function(languages, inputID, keyboardID){
 
   var that = this;
-  var LAYOUT_ADDRESS = "layouts/" + lang + ".json";
+  var LAYOUT_ADDRESS = "layouts/" + languages[0] + ".json";
 
   $.ajax({
     url: LAYOUT_ADDRESS,
@@ -52,6 +53,10 @@ App.prototype.init = function(lang, inputID, keyboardID){
     var keyboard = new Keyboard(keyboardID, data, that, input);
     that.keyboard = keyboard;
     that.input = input;
+    that.language = {
+      list: languages,
+      current: 0
+    };
     keyboard.draw("COMMON_VERSION", 1);
     console.log(that);
   }
@@ -84,10 +89,18 @@ Keyboard.prototype.changeView = function(layout){
   }, this);
 };
 
-Keyboard.prototype.changeLanguage = function(lang){
+Keyboard.prototype.changeLanguage = function(){
 
-  var that = this;
+  var lang;
+  if(this.app.language.current < this.app.language.list.length - 1){
+    lang = this.app.language.list[this.app.language.current + 1];
+    this.app.language.current++;
+  }else{
+    lang = this.app.language.list[0];
+    this.app.language.current = 0;
+  }
   var LAYOUT_ADDRESS = "layouts/" + lang + ".json";
+  var that = this;
 
   $.ajax({
     url: LAYOUT_ADDRESS,
@@ -144,7 +157,7 @@ Button.prototype.onClick =function(){
            this.keyboard.input.changeCaps();
            break;
       case "lang":
-            this.keyboard.changeLanguage("geo");
+            this.keyboard.changeLanguage();
             break;
       default:
            console.log("There is no such key");
@@ -201,4 +214,4 @@ Input.prototype.changeShift = (function(){
 }());
 
 var app = new App();
-app.init("eng", "input-div", "keyboard");
+app.init(["eng", "geo"], "input-div", "keyboard");
