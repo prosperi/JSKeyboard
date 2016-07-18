@@ -3,7 +3,7 @@ html
   head
     title JS keyboard
     script(src="jquery.min.js")
-    link(rel="stylesheet",href="styles.css")    
+    link(rel="stylesheet",href="styles.css")      
   body
     textarea.input-div#input-div
     br
@@ -13,7 +13,7 @@ html
           .col-half
           - for(var j = 0; j < 15; j++){
             - if(j == 0 && i != 0){
-                div(class="col-2",id="col-#{i+''+j}") 
+                div(class="col-2",id="col-#{i+''+j}")
                 - j++
             - }else if(i == 2 && j== 13){
                 div(class="col-2",id="col-#{i+''+j}") 

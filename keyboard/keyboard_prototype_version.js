@@ -24,8 +24,16 @@ function Button(value, id, keyboard){
   this.rowId = /[0-9]+$/.exec(id)[0].slice(1);
   this.keyboard = keyboard;
   this.element = document.getElementById(id);
-  this.element.textContent = value;
   this.element.addEventListener("click", this.constructor.prototype.onClick.bind(this));  // When ES6 becomes fully supported we'll be free ()=>{
+  var specialChars = ["right", "left", "tab", "caps", "shift", "enter", "bspace", "lang", "delete"];
+  if(specialChars.indexOf(value) === -1){
+    this.element.textContent = value;
+  }else{
+    var img = document.createElement("img");
+    img.src = "images/" + value + ".png";
+    img.width = 14;
+    this.element.appendChild(img);
+  }
 }
 
 function Input(id, app){
@@ -84,8 +92,11 @@ Keyboard.prototype.draw = function(layout, listenerChecker){
 
 // Reassign Buttons' textContent (used for Caps, Shift and language change operations)
 Keyboard.prototype.changeView = function(layout){
+  var specialChars = ["right", "left", "tab", "caps", "shift", "enter", "bspace", "lang", "delete"];
   this.buttons.forEach(function(button){
-    button.element.textContent = this[layout][button.colId][button.rowId];
+    if(specialChars.indexOf(button.value) === -1){
+      button.element.textContent = this[layout][button.colId][button.rowId];
+    }
   }, this);
 };
 
