@@ -2,8 +2,9 @@ doctype
 html
   head
     title JS keyboard
-    script(src="jquery.min.js")
-    link(rel="stylesheet",href="styles.css")    
+    script(src="js/jquery.min.js")
+    link(rel="stylesheet",href="styles/styles.css")      
+    link(href="https://fonts.googleapis.com/css?family=Roboto",rel="stylesheet",type="text/css")   
   body
     textarea.input-div#input-div
     br
@@ -13,7 +14,7 @@ html
           .col-half
           - for(var j = 0; j < 15; j++){
             - if(j == 0 && i != 0){
-                div(class="col-2",id="col-#{i+''+j}") 
+                div(class="col-2",id="col-#{i+''+j}")
                 - j++
             - }else if(i == 2 && j== 13){
                 div(class="col-2",id="col-#{i+''+j}") 
@@ -36,5 +37,5 @@ html
         .col-2#col-410
         .col-3.col-none
         .col-half 
-    script(src="keyboard.js")
+    script(src="js/keyboard_prototype_version.js")
     
