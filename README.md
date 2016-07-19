@@ -16,14 +16,15 @@ Simple virtual keyboard, built with plain js.
 ```    
 - ... and initialize the app
 ```
-  app.init(["eng"],       // The first argument is an array of languages that should be imported;
-                          // eng - English. Those values are names of json files stored in languages directory
-                          // New language json can be simply added by changing English symbols with new language symbols
-                          // Compare languages/eng.json and languages/geo.json for more information.
-           "input-div",   // This is the default id for input field. If you need to change this id, first of all
-                          // change input field id in layouts/keyboard.html and then pass the new id to init()
-           "keyboard")    // Same goes for the keyboard argument, if you need to change this id, do it from
-                          // layouts/keyboard.html
+  app.init(
+    ["eng"],        // The first argument is an array of languages that should be imported;
+                    // eng - English. Those values are names of json files stored in languages directory
+                    // New language json can be simply added by changing English symbols with new language symbols
+                    // Compare languages/eng.json and languages/geo.json for more information.
+     "input-div",   // This is the default id for input field. If you need to change this id, first of all
+                    // change input field id in layouts/keyboard.html and then pass the new id to init()
+     "keyboard")    // Same goes for the keyboard argument, if you need to change this id, do it from
+                    // layouts/keyboard.html
 ```
 
 # Further Development
@@ -33,7 +34,8 @@ The keyboard layout can be modified by editing html code in **layouts/keyboard.h
 
 >If anybody prefers using templating engine(in this case jade), there is 
 >**keyboard.jade** in layouts directory, it does the same as
->keyboard.html. So jade can also be used for any changes, but new html file should be >generated afterwards.
+>keyboard.html. So jade can also be used for any changes, but new html file should be 
+>generated afterwards.
 
 # License
 MIT
