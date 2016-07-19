@@ -16,16 +16,22 @@ Simple virtual keyboard, built with plain js.
 ```    
 - ... and initialize the app
 ```
-  app.init(
-    ["eng"],        // The first argument is an array of languages that should be imported;
-                    // eng - English. Those values are names of json files stored in languages directory
-                    // New language json can be simply added by changing English symbols with new language symbols
-                    // Compare languages/eng.json and languages/geo.json for more information.
-     "input-div",   // This is the default id for input field. If you need to change this id, first of all
-                    // change input field id in layouts/keyboard.html and then pass the new id to init()
-     "keyboard")    // Same goes for the keyboard argument, if you need to change this id, do it from
-                    // layouts/keyboard.html
+app.init(["eng"], "input-div", "keyboard")
 ```
+# API Reference
+app.init( \<languages\> , \<input_id\> , \<keyboard_id\> )
+  - ***\<languages\>***     
+      The first argument is an array of languages that should be imported;
+      eng - English. Those values are names of json files stored in languages directory
+      New language json can be simply added by changing English symbols with new language symbols
+      Compare languages/eng.json and languages/geo.json for more information.
+  - ***\<input_id\>***   
+      This is the default id for input field. If you need to change this id, first of all
+      change input field id in layouts/keyboard.html and then pass the new id to init()
+  - ***\<keyboard_id\>*** 
+      Same goes for the keyboard argument, if you need to change this id, do it from
+      layouts/keyboard.html
+
 
 # Further Development
 The keyboard layout can be modified by editing html code in **layouts/keyboard.html** while removing corresponding fields in
