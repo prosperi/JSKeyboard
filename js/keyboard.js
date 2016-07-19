@@ -1,4 +1,5 @@
-function App(){
+function App(app){
+  this.app = document.getElementById(app);
   this.keyboard = null;
   this.input = null;
   this.language = null;
@@ -48,11 +49,18 @@ function Input(id, app){
 App.prototype.init = function(languages, inputID, keyboardID){
 
   var that = this;
-  var LAYOUT_ADDRESS = "layouts/" + languages[0] + ".json";
+  var LAYOUT_ADDRESS = "languages/" + languages[0] + ".json";
 
   $.ajax({
-    url: LAYOUT_ADDRESS,
-    success: success,
+    url: "layouts/keyboard.html",
+    success: function(data){
+      that.app.innerHTML = data;
+      $.ajax({
+        url: LAYOUT_ADDRESS,
+        success: success,
+        error: error
+      });
+    },
     error: error
   });
 
@@ -66,7 +74,6 @@ App.prototype.init = function(languages, inputID, keyboardID){
       current: 0
     };
     keyboard.draw("COMMON_VERSION", 1);
-    console.log(that);
   }
 
   function error(){
@@ -110,7 +117,7 @@ Keyboard.prototype.changeLanguage = function(){
     lang = this.app.language.list[0];
     this.app.language.current = 0;
   }
-  var LAYOUT_ADDRESS = "layouts/" + lang + ".json";
+  var LAYOUT_ADDRESS = "languages/" + lang + ".json";
   var that = this;
 
   $.ajax({
@@ -223,6 +230,3 @@ Input.prototype.changeShift = (function(){
     return (counter%2 === 1) ? this.keyboard.changeView("SHIFT_VERSION", 0) : this.keyboard.changeView("COMMON_VERSION");
   }
 }());
-
-var app = new App();
-app.init(["eng", "geo"], "input-div", "keyboard");

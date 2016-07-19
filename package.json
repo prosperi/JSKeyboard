@@ -1,12 +1,28 @@
 {
-  "name": "JSKeyboard",
-  "version": "0.1.0",
-  "description": "Simple JS keyboard",
-  "main": "keyboard/keyboard.js",
+  "name": "js-keyboard",
+  "version": "1.0.0",
+  "description": "Simple virtual keyboard, built with plain js.",
+  "main": "js/keyboard_prototype_version.js",
   "dependencies": {
-    "jade": "*",
-    "angular": "*"
+    "jade": "^1.11.0"
   },
-  "author": "prosperi",
-  "license": "MIT"
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prosperi/JSKeyboard.git"
+  },
+  "keywords": [
+    "js-keyboard",
+    "keyboard",
+    "on-keyboard",
+    "virtual-keyboard",
+    "virtual",
+    "keyboard"
+  ],
+  "author": "Zura Mestiashvili",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/prosperi/JSKeyboard/issues"
+  },
+  "homepage": "https://github.com/prosperi/JSKeyboard#readme"
 }
