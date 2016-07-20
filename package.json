@@ -2,7 +2,7 @@
   "name": "js-keyboard",
   "version": "1.0.0",
   "description": "Simple virtual keyboard, built with plain js.",
-  "main": "js/keyboard_prototype_version.js",
+  "main": "js/keyboard.js",
   "dependencies": {
     "jade": "^1.11.0"
   },
