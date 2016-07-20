@@ -24,11 +24,11 @@ app.init(["eng"], "input-div", "keyboard")
 ```html
   <link rel="stylesheet" href="bower_components/js-keyboard/styles/styles.css">
 ```
-  and kyeboard.js file before ***\</body\>*** tag:
+  and keyboard.js file before ***\</body\>*** tag:
 ```html
   <script src="bower_components/js-keyboard/js/keyboard.js"></script>
 ```
-  now you ready to create new App
+  now you are ready to create a new App
 - Another way is to donwload repo from github, place its directories in your project and imports styles/styles.css after ***\<head\>*** tag
   and js/keyboard.js before ***\</body\>*** tag. 
 
