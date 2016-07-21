@@ -31,7 +31,7 @@ function Button(value, id, keyboard){
     this.element.textContent = value;
   }else{
     var img = document.createElement("img");
-    img.src = "bower_components/js-keyboard/images/" + value + ".png";
+    img.src = "images/" + value + ".png";
     img.width = 14;
     this.element.appendChild(img);
   }
@@ -49,10 +49,10 @@ function Input(id, app){
 App.prototype.init = function(languages, inputID, keyboardID){
 
   var that = this;
-  var LAYOUT_ADDRESS = "bower_components/js-keyboard/languages/" + languages[0] + ".json";
+  var LAYOUT_ADDRESS = "languages/" + languages[0] + ".json";
 
   $.ajax({
-    url: "bower_components/js-keyboard/layouts/keyboard.html",
+    url: "layouts/keyboard.html",
     success: function(data){
       that.app.innerHTML = data;
       $.ajax({
@@ -117,7 +117,7 @@ Keyboard.prototype.changeLanguage = function(){
     lang = this.app.language.list[0];
     this.app.language.current = 0;
   }
-  var LAYOUT_ADDRESS = "bower_components/js-keyboard/languages/" + lang + ".json";
+  var LAYOUT_ADDRESS = "languages/" + lang + ".json";
   var that = this;
 
   $.ajax({

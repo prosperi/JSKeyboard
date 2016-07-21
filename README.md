@@ -1,5 +1,5 @@
 # JSKeyboard
-Simple virtual keyboard, built with plain js.
+Simple virtual keyboard, built with js.
 
 # Code Example
 - Create a new div which will be the parent node of your keyboard and input:
@@ -28,7 +28,7 @@ app.init( \<languages\> , \<input_id\> , \<keyboard_id\> )
   - ***\<input_id\>***   
       This is the default id for input field. If you need to change this id, first of all
       change input field id in layouts/keyboard.html and then pass the new id to init()
-  - ***\<keyboard_id\>*** 
+  - ***\<keyboard_id\>***
       Same goes for the keyboard argument, if you need to change this id, do it from
       layouts/keyboard.html
 
@@ -38,9 +38,9 @@ The keyboard layout can be modified by editing html code in **layouts/keyboard.h
 **languages/language.json** (in this case eng.json).
 **language.json** contains 3 objects: layout for common, caps and shift versions of keyboard.
 
->If anybody prefers using templating engine(in this case jade), there is 
+>If anybody prefers using templating engine(in this case jade), there is
 >**keyboard.jade** in layouts directory, it does the same as
->keyboard.html. So jade can also be used for any changes, but new html file should be 
+>keyboard.html. So jade can also be used for any changes, but new html file should be
 >generated afterwards.
 
 # License

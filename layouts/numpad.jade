@@ -1,0 +1,12 @@
+
+textarea.input-div#input-div
+br
+.numpad#numpad
+  - for(var i = 0; i < 4; i++){
+    div(class="row",id="row-#{i}")
+      .col-half
+      - for(var j = 0; j < 3; j++){
+        div(class="col-5",id="col-#{i+''+j}")
+      - }
+      .col-half
+  - }

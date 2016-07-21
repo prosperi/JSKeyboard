@@ -1,12 +1,13 @@
 {
   "name": "js-keyboard",
   "version": "1.0.0",
-  "description": "Simple virtual keyboard, built with plain js.",
+  "description": "Simple virtual keyboard, built with js.",
   "main": "js/keyboard.js",
   "dependencies": {
+  },
+  "devDependencies": {
     "jade": "^1.11.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/prosperi/JSKeyboard.git"

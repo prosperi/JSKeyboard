@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>JSKeyboard</title>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles/styles.css">
+  </head>
+  <body>
+
+    <div id="app"></div>
+
+    <script src="js/keyboard.js"></script>
+    <script type="text/javascript">
+      var app = new App("app");
+      app.init(["eng", "geo"], "input-div", "keyboard");
+    </script>
+  </body>
+</html>
