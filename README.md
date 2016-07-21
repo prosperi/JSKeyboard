@@ -3,21 +3,37 @@ Simple virtual keyboard, built with js.
 
 # Code Example
 - Create a new div which will be the parent node of your keyboard and input:
-```sh
+```js
   <div id="app"></div>
 ```
-- Import js/keyboard.js before </body> tag:
-```sh
-  <script src="js/keyboard.js"></script>
-```
-- Finally, create new App and pass arguments:
-```
+- create new App and pass arguments:
+```js
   var app = new App("app") // argument for App is the id of our div, in our case "app"
 ```    
 - ... and initialize the app
 ```
 app.init(["eng"], "input-div", "keyboard")
 ```
+
+#Installation
+- Install with Bower
+```sh
+  bower install js-keyboard --save
+```
+  After installing the package import js and css files in your code:
+```html
+  <link rel="stylesheet" href="bower_components/js-keyboard/styles/styles.css">
+```
+  and keyboard.js file before ***\</body\>*** tag:
+```html
+  <script src="bower_components/js-keyboard/js/keyboard.js"></script>
+```
+  now you are ready to create a new App
+- Another way is to donwload repo from github, place its directories in your project and imports styles/styles.css after ***\<head\>*** tag
+  and js/keyboard.js before ***\</body\>*** tag. 
+
+> Be sure to include jQuery in both cases
+
 # API Reference
 app.init( \<languages\> , \<input_id\> , \<keyboard_id\> )
   - ***\<languages\>***     
